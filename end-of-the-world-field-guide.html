@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>End of the World — Listening Profiles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#E6E2D7; --paper2:#DCD7C9; --ink:#16130F; --ink60:#16130F99;
+    --pink:#F0325B; --blue:#2746C7; --gold:#C98A12;
+    --line:#16130F22;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Inter",system-ui,sans-serif;line-height:1.5;
+    background-image:radial-gradient(var(--line) 0.5px,transparent 0.5px);background-size:5px 5px;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+
+  header.mast{padding:46px 0 26px;border-bottom:3px solid var(--ink)}
+  .eyebrow{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--ink60);margin:0 0 10px}
+  h1.mast{font-family:"Anton",sans-serif;font-weight:400;line-height:.92;
+    font-size:clamp(40px,9vw,108px);margin:0;text-transform:uppercase;letter-spacing:.005em}
+  h1.mast .b{color:var(--pink)}
+  .dek{font-size:clamp(15px,1.7vw,19px);max-width:62ch;margin:18px 0 0}
+  .runstats{font-family:"Space Mono",monospace;font-size:12.5px;margin:20px 0 0;
+    display:flex;flex-wrap:wrap;gap:6px 22px;color:var(--ink60)}
+  .runstats b{color:var(--ink)}
+
+  .sec{padding:54px 0 8px}
+  .seclabel{display:flex;align-items:baseline;gap:14px;margin:0 0 4px}
+  .seclabel .no{font-family:"Anton",sans-serif;font-size:34px;color:var(--pink);line-height:1}
+  .seclabel h2{font-family:"Anton",sans-serif;font-weight:400;text-transform:uppercase;
+    font-size:clamp(22px,3.4vw,34px);margin:0;letter-spacing:.01em}
+  .secsub{font-size:15px;max-width:66ch;margin:6px 0 0}
+  .secsub b{font-weight:600}
+
+  /* findings callout */
+  .finds{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;
+    border:2px solid var(--ink);margin-top:26px;background:var(--paper2)}
+  .find{padding:16px 18px;border-right:1.5px solid var(--ink)}
+  .find:last-child{border-right:0}
+  .find .big{font-family:"Anton",sans-serif;font-size:42px;line-height:.9;color:var(--pink)}
+  .find .big.blue{color:var(--blue)}
+  .find p{font-size:13px;margin:8px 0 0}
+  @media(max-width:720px){.find{border-right:0;border-bottom:1.5px solid var(--ink)}.find:last-child{border-bottom:0}}
+
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(312px,1fr));gap:14px;margin-top:26px}
+  .card{background:var(--paper2);border:2px solid var(--ink);position:relative;
+    display:flex;flex-direction:column;transition:transform .12s ease}
+  .card:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink)}
+  .card .top{display:flex;justify-content:space-between;align-items:flex-start;
+    padding:12px 14px 8px;border-bottom:1.5px solid var(--ink)}
+  .card .name{font-family:"Anton",sans-serif;font-size:30px;line-height:.9;text-transform:uppercase}
+  .card .role{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--pink);margin-top:5px;font-weight:700}
+  .chip{font-family:"Space Mono",monospace;font-size:10px;font-weight:700;letter-spacing:.1em;
+    text-transform:uppercase;padding:3px 7px;border:1.5px solid var(--ink);white-space:nowrap}
+  .chip.core{background:var(--ink);color:var(--paper)}
+  .chip.bridge{background:var(--gold);color:var(--ink)}
+  .chip.outlier{background:var(--blue);color:var(--paper)}
+  .statline{display:flex;border-bottom:1.5px solid var(--ink);font-family:"Space Mono",monospace}
+  .statline .s{flex:1;padding:9px 4px;text-align:center;border-right:1px solid var(--line)}
+  .statline .s:last-child{border-right:0}
+  .statline .num{font-size:20px;font-weight:700;display:block;line-height:1}
+  .statline .lab{font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink60);margin-top:4px}
+  .card .body{padding:12px 14px 14px;font-size:13.5px}
+  .card .kv{font-family:"Space Mono",monospace;font-size:11px;margin:0 0 7px;line-height:1.45}
+  .card .kv .k{color:var(--ink60);font-weight:700}
+  .card .kv.curates .k{color:var(--gold)}
+  .card .kv .none{color:var(--blue);font-weight:700}
+  .card .blurb{margin:9px 0 0}
+  .card .collide{font-family:"Space Mono",monospace;font-size:11px;margin:10px 0 0;
+    padding-top:9px;border-top:1px dashed var(--line);color:var(--ink60)}
+  .card .collide b{color:var(--pink)}
+
+  .mapwrap{margin-top:26px;border:2px solid var(--ink);background:var(--paper2)}
+  svg{display:block;width:100%;height:auto}
+  .legend{display:flex;flex-wrap:wrap;gap:8px 20px;font-family:"Space Mono",monospace;
+    font-size:11px;padding:11px 14px;border-top:1.5px solid var(--ink);color:var(--ink60)}
+  .legend .k{display:inline-flex;align-items:center;gap:7px}
+  .swatch{width:13px;height:13px;border:1.5px solid var(--ink);display:inline-block}
+  .edge{stroke:var(--ink);transition:stroke-opacity .15s,stroke-width .15s}
+  .node circle.hit{fill:var(--ink)}
+  .node circle.reg{fill:var(--pink);opacity:.9}
+  .node.outlier circle.reg{fill:var(--blue)}
+  .node text.init{font-family:"Anton",sans-serif;fill:var(--paper);text-anchor:middle;dominant-baseline:central}
+  .node text.lbl{font-family:"Space Mono",monospace;font-weight:700;fill:var(--ink);text-anchor:middle;font-size:12px}
+  .node{cursor:pointer}
+  .node.dim{opacity:.22}
+  .edge.dim{stroke-opacity:.06 !important}
+  .edge.hot{stroke:var(--pink)!important}
+
+  .grid-scroll{overflow-x:auto;margin-top:26px;border:2px solid var(--ink)}
+  table.heat{border-collapse:collapse;font-family:"Space Mono",monospace;width:100%;background:var(--paper2)}
+  table.heat th,table.heat td{border:1px solid var(--ink);text-align:center;font-size:12px;width:10.5%;padding:0}
+  table.heat th{background:var(--ink);color:var(--paper);font-weight:700;height:34px;
+    text-transform:uppercase;letter-spacing:.04em}
+  table.heat th.corner{background:var(--paper2)}
+  table.heat th.row{text-align:right;padding-right:9px}
+  table.heat td{height:42px;position:relative;color:var(--ink)}
+  table.heat td .v{position:relative;z-index:2;font-weight:700}
+  table.heat td.diag{background:var(--ink);color:var(--paper);font-size:10px}
+  .heatnote{font-family:"Space Mono",monospace;font-size:11px;color:var(--ink60);
+    margin:10px 0 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .scalebar{display:inline-flex;height:13px;border:1.5px solid var(--ink)}
+  .scalebar span{width:22px;height:100%}
+
+  footer{margin:64px 0 40px;padding-top:18px;border-top:3px solid var(--ink);
+    font-family:"Space Mono",monospace;font-size:11.5px;color:var(--ink60);line-height:1.6}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+  @media (max-width:560px){.card .name{font-size:25px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="mast">
+    <p class="eyebrow">Listening Profiles · Music Club Field Guide</p>
+    <h1 class="mast">End of the<br>World <span class="b">Songs</span></h1>
+    <p class="dek">Six years of weekly picks, read back as nine distinct ears. The club meets two ways — theme weeks where everyone brings a couple of songs, and curations where one member walks the group through an artist — so these profiles count how many different <em>weeks</em> someone reached for an artist, never raw track totals.</p>
+    <p class="runstats">
+      <span><b>178</b> weeks</span>
+      <span><b>Apr 2020</b> → <b>Jun 2026</b></span>
+      <span><b>9</b> listeners</span>
+      <span><b>66</b> curations led between them</span>
+      <span><b>1</b> near-universal artist (the Beatles — and only via a Beatles week)</span>
+    </p>
+  </header>
+
+  <!-- FINDINGS -->
+  <section class="sec">
+    <div class="seclabel"><span class="no">00</span><h2>The Shape of It</h2></div>
+    <div class="finds">
+      <div class="find">
+        <div class="big">≈0</div>
+        <p>artists the whole group independently shares. Outside the Beatles (a theme week) and Springsteen, no act reaches even four of the nine. Taste here is unusually individuated.</p>
+      </div>
+      <div class="find">
+        <div class="big blue">2</div>
+        <p>pure scouts who've <b>never led a deep-dive</b> — Farrah and Kara — bringing a fresh name almost every week instead. Rob, by contrast, has curated 19.</p>
+      </div>
+      <div class="find">
+        <div class="big">17</div>
+        <p>shared artists between Joe and Becky, the single strongest tie. The '90s-indie / dream-pop core (Joe, Becky, Greg, Farrah) is where the collections actually touch.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFILES -->
+  <section class="sec">
+    <div class="seclabel"><span class="no">01</span><h2>The Nine</h2></div>
+    <p class="secsub"><b>Weeks</b> = themes/curations they showed up for. <b>Artists</b> = distinct acts they've championed. <b>Curations</b> = artist deep-dives they led (a 15-song curation counts as one signal, same as picking that artist once in a theme). <b>Reaches for</b> = what they pull back to across themes; <b>Curates</b> = the artists they've taught the group.</p>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <!-- CONSTELLATION -->
+  <section class="sec">
+    <div class="seclabel"><span class="no">02</span><h2>Collision Constellation</h2></div>
+    <p class="secsub">Each disc is a listener, sized by distinct artists championed. A line joins two people for every artist they've <em>both</em> picked — heavier line, more shared. Co-curated artists (Big Star, Tropicália) aren't counted as overlap, since that's one joint act, not two ears agreeing. Hover a disc to isolate its ties.</p>
+    <div class="mapwrap">
+      <svg id="map" viewBox="0 0 1000 640" role="img" aria-label="Network of shared-artist connections between the nine listeners"></svg>
+      <div class="legend">
+        <span class="k"><span class="swatch" style="background:var(--gold)"></span> Connector / bridge</span>
+        <span class="k"><span class="swatch" style="background:var(--pink)"></span> Indie core</span>
+        <span class="k"><span class="swatch" style="background:var(--blue)"></span> Outlier</span>
+        <span class="k">Line = shared artists (4–17)</span>
+        <span class="k">Disc = distinct artists (68–206)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HEATMAP -->
+  <section class="sec">
+    <div class="seclabel"><span class="no">03</span><h2>Where They Overlap</h2></div>
+    <p class="secsub">Shared artists for every pair, co-curations removed. The <b>core</b> glows in the middle; <b>Brian</b> stays pale against everyone (no tie of 4+), and <b>Kara</b> hangs on by a single thread to Rob.</p>
+    <div class="grid-scroll"><table class="heat" id="heat"></table></div>
+    <p class="heatnote">Fewer shared
+      <span class="scalebar" id="scalebar"></span>
+      More shared · diagonal = each person's distinct-artist count</p>
+  </section>
+
+  <footer>
+    METHOD · Picks parsed and attributed per contributor across 178 weekly sheets. To keep curations from drowning out theme picks, an artist counts once per week it appears for a person, regardless of track count — so a 32-song Wire curation and a single Wire theme pick weigh the same. Top-artist lists rank by number of distinct weeks; node size is distinct artists; overlap is shared artists with single-week co-curations (e.g. Rob &amp; Adrian on Big Star, Kara's Tropicália) excluded. Combined credits are counted for each named member. Characterizations are read off actual picks, not external genre data.
+  </footer>
+</div>
+
+<script>
+const people = [
+ {n:"Rob",role:"The Historian",weeks:140,artists:197,cur:19,grp:"bridge",x:.30,y:.34,
+  reach:["Lou Reed","PJ Harvey","Velvet Underground","Joni Mitchell","Felt","The Modern Lovers"],
+  curates:"Wire · The Clean · Teenage Fanclub · Replacements · Springsteen · Big Star · 13th Floor Elevators",
+  blurb:"The club's historian — 19 deep-dives, more than anyone. Left to a theme he reaches for the art-rock and post-punk canon: Lou Reed, the Velvets, PJ Harvey.",
+  col:"Connects widest — Greg (10), Joe (9), Scott / Becky / Adrian (7 each)."},
+ {n:"Adrian",role:"The Poptimist",weeks:159,artists:191,cur:14,grp:"bridge",x:.45,y:.22,
+  reach:["Josh Ritter","Kathleen Edwards","Oasis","Ben Folds","Lydia Loveless","Warren Zevon"],
+  curates:"Teenage Fanclub · Taylor Swift · U2 · Andrew Bird · Jon Brion · Aimee Mann · Billy Joel",
+  blurb:"Melody and craft, unironically. His curations run to the canon; his own theme picks lean alt-country and Britpop — Josh Ritter, Kathleen Edwards, Oasis.",
+  col:"The poptimism bridge to Joe (11); also Becky and Farrah (7)."},
+ {n:"Joe",role:"The Maximalist",weeks:159,artists:206,cur:12,grp:"core",x:.36,y:.53,
+  reach:["Harvey Danger","New Order","Earl Sweatshirt","Fucked Up","Nine Inch Nails","Vince Staples"],
+  curates:"Against Me! · New Order · Huggy Bear · Dead Kennedys · Tyler, the Creator · Roky Erickson",
+  blurb:"The widest net of all — most distinct artists (206). Hardcore one week, hip-hop (Earl, Vince Staples, Danny Brown) and industrial the next, pop with no embarrassment.",
+  col:"The strongest tie in the group — Joe ↔ Becky (17)."},
+ {n:"Greg",role:"The Texturalist",weeks:150,artists:204,cur:7,grp:"core",x:.57,y:.62,
+  reach:["Mogwai","The Mountain Goats","The War on Drugs","Chelsea Wolfe","DIIV","Just Mustard"],
+  curates:"Clinic · Blonde Redhead · Brian Jonestown Massacre · Cocteau Twins · Chelsea Wolfe",
+  blurb:"Picks for mood and texture — dream-pop, shoegaze, post-rock and the dark-ethereal, with a steady feed of new bands (DIIV, Just Mustard, The Wants).",
+  col:"Collides hardest with Farrah (16) and Becky (13)."},
+ {n:"Becky",role:"The Indie Core",weeks:148,artists:181,cur:8,grp:"core",x:.51,y:.40,
+  reach:["Sonic Youth","Heavenly","Built to Spill","Sebadoh","Camera Obscura","Kim Deal"],
+  curates:"Yo La Tengo · Pavement · Blonde Redhead · Low · Björk · Sonic Youth · Cate Le Bon",
+  blurb:"The '90s college-rock and dream-pop heart — curated Yo La Tengo and Pavement, reaches for Sonic Youth and twee (Heavenly, Camera Obscura). The most-shared taste here.",
+  col:"Center of the core — Joe (17), Greg (13), Rob & Adrian (7)."},
+ {n:"Farrah",role:"Songwriter's Scout",weeks:127,artists:176,cur:0,grp:"core",x:.69,y:.46,
+  reach:["Adrianne Lenker","Weyes Blood","Courtney Marie Andrews","Fenne Lily","Kevin Morby"],
+  curates:null,
+  blurb:"Never led a curation; instead brings a fresh, current name nearly every week (176 artists, rarely repeated) — contemporary indie and women-fronted songwriting.",
+  col:"Collides with Greg (16) and Adrian (7) on dream-pop and craft."},
+ {n:"Scott",role:"The Canon Keeper",weeks:93,artists:150,cur:5,grp:"outlier",x:.165,y:.30,
+  reach:["Black Heart Procession","Lana Del Rey","The Clash","The Kinks"],
+  curates:"The Kinks · T. Rex · The Clash · Black Heart Procession · Three Mile Pilot",
+  blurb:"Curates the canon and its glam/punk edges (Kinks, T. Rex, Clash) and the cult acts beside it — Three Mile Pilot, Arthur Russell, desert blues.",
+  col:"Mostly touches Rob (7) — canon meeting canon."},
+ {n:"Brian",role:"The Heavy",weeks:36,artists:68,cur:1,grp:"outlier",x:.13,y:.72,
+  reach:null,
+  curates:"Melvins",
+  blurb:"One deep-dive (Melvins) and otherwise a wall of one-off Aussie proto-punk and Oi! — Radio Birdman, The Saints, Cosmic Psychos. The loudest, heaviest shelf.",
+  col:"No tie of 4+ to anyone — the true isolate."},
+ {n:"Kara",role:"The Globe-Trotter",weeks:42,artists:75,cur:0,grp:"outlier",x:.85,y:.74,
+  reach:null,
+  curates:null,
+  blurb:"A near-perfect omnivore — 75 artists across her picks, almost never the same one twice. Tropicália, funk, soul and post-punk oddities, far off the group's indie map.",
+  col:"A single thread to Rob (4); otherwise unconnected."},
+];
+
+const order=["Rob","Adrian","Joe","Greg","Becky","Farrah","Scott","Brian","Kara"];
+const diag={Rob:197,Adrian:191,Joe:206,Greg:204,Becky:181,Farrah:176,Scott:150,Brian:68,Kara:75};
+const pair={};
+function set(a,b,v){pair[a+"|"+b]=v;pair[b+"|"+a]=v;}
+set("Rob","Adrian",7);set("Rob","Joe",9);set("Rob","Greg",10);set("Rob","Becky",7);
+set("Rob","Farrah",5);set("Rob","Scott",7);set("Rob","Kara",4);set("Rob","Brian",1);
+set("Adrian","Joe",11);set("Adrian","Greg",3);set("Adrian","Becky",7);set("Adrian","Farrah",7);
+set("Adrian","Scott",3);set("Adrian","Brian",1);set("Adrian","Kara",1);
+set("Joe","Greg",5);set("Joe","Becky",17);set("Joe","Farrah",8);set("Joe","Scott",3);
+set("Joe","Kara",3);set("Joe","Brian",0);
+set("Greg","Becky",13);set("Greg","Farrah",16);set("Greg","Scott",3);set("Greg","Kara",2);set("Greg","Brian",0);
+set("Becky","Farrah",4);set("Becky","Scott",5);set("Becky","Kara",0);set("Becky","Brian",0);
+set("Farrah","Scott",3);set("Farrah","Brian",1);set("Farrah","Kara",0);
+set("Scott","Brian",0);set("Scott","Kara",1);
+set("Brian","Kara",2);
+function shared(a,b){return a===b?diag[a]:(pair[a+"|"+b]||0);}
+
+const cards=document.getElementById('cards');
+people.forEach(p=>{
+  const reach = p.reach ? `<p class="kv"><span class="k">REACHES FOR·</span> ${p.reach.join(" · ")}</p>`
+                        : `<p class="kv"><span class="k">REACHES FOR·</span> <span class="none">never repeats</span> — breadth over favorites</p>`;
+  const cur = p.curates ? `<p class="kv curates"><span class="k">CURATES·</span> ${p.curates}</p>`
+                        : `<p class="kv curates"><span class="k">CURATES·</span> <span class="none">no deep-dives — a pure theme scout</span></p>`;
+  const el=document.createElement('div');el.className='card';
+  el.innerHTML=`
+   <div class="top">
+     <div><div class="name">${p.n}</div><div class="role">${p.role}</div></div>
+     <span class="chip ${p.grp}">${p.grp==='bridge'?'connector':p.grp}</span>
+   </div>
+   <div class="statline">
+     <div class="s"><span class="num">${p.weeks}</span><span class="lab">weeks</span></div>
+     <div class="s"><span class="num">${p.artists}</span><span class="lab">artists</span></div>
+     <div class="s"><span class="num">${p.cur}</span><span class="lab">curations</span></div>
+   </div>
+   <div class="body">
+     ${reach}${cur}
+     <p class="blurb">${p.blurb}</p>
+     <p class="collide"><b>↔</b> ${p.col}</p>
+   </div>`;
+  cards.appendChild(el);
+});
+
+const NS="http://www.w3.org/2000/svg",svg=document.getElementById('map');
+const W=1000,H=640,PAD=70;
+const pos={};people.forEach(p=>pos[p.n]={x:PAD+p.x*(W-2*PAD),y:PAD+p.y*(H-2*PAD)});
+const rOf=p=>12+Math.sqrt(p.artists)*2.0;
+const edges=[];
+order.forEach((a,i)=>order.forEach((b,j)=>{if(j>i){const v=shared(a,b);if(v>=4)edges.push({a,b,v});}}));
+const gEdges=document.createElementNS(NS,'g');svg.appendChild(gEdges);
+edges.forEach(e=>{
+  const l=document.createElementNS(NS,'line');
+  l.setAttribute('x1',pos[e.a].x);l.setAttribute('y1',pos[e.a].y);
+  l.setAttribute('x2',pos[e.b].x);l.setAttribute('y2',pos[e.b].y);
+  l.setAttribute('class','edge');l.setAttribute('stroke-width',1+(e.v-3)*0.8);
+  l.setAttribute('stroke-opacity',0.18+(e.v/17)*0.5);
+  l.dataset.a=e.a;l.dataset.b=e.b;gEdges.appendChild(l);
+});
+const nodes={};
+people.forEach(p=>{
+  const g=document.createElementNS(NS,'g');
+  g.setAttribute('class','node'+(p.grp==='outlier'?' outlier':''));
+  g.setAttribute('transform',`translate(${pos[p.n].x},${pos[p.n].y})`);
+  const r=rOf(p);
+  const reg=document.createElementNS(NS,'circle');
+  reg.setAttribute('class','reg');reg.setAttribute('r',r);reg.setAttribute('cx',3.5);reg.setAttribute('cy',3.5);
+  if(p.grp==='bridge'){reg.style.fill='var(--gold)';}
+  const hit=document.createElementNS(NS,'circle');hit.setAttribute('class','hit');hit.setAttribute('r',r);
+  const ini=document.createElementNS(NS,'text');
+  ini.setAttribute('class','init');ini.setAttribute('font-size',r*0.85);ini.textContent=p.n[0];
+  const lbl=document.createElementNS(NS,'text');
+  lbl.setAttribute('class','lbl');lbl.setAttribute('y',r+15);lbl.textContent=p.n.toUpperCase();
+  g.append(reg,hit,ini,lbl);svg.appendChild(g);nodes[p.n]=g;
+  g.addEventListener('mouseenter',()=>focus(p.n));
+  g.addEventListener('mouseleave',clearFocus);
+});
+function focus(name){
+  const keep=new Set([name]);
+  document.querySelectorAll('.edge').forEach(l=>{
+    if(l.dataset.a===name||l.dataset.b===name){l.classList.add('hot');l.classList.remove('dim');keep.add(l.dataset.a);keep.add(l.dataset.b);}
+    else{l.classList.add('dim');l.classList.remove('hot');}
+  });
+  Object.entries(nodes).forEach(([n,g])=>g.classList.toggle('dim',!keep.has(n)));
+}
+function clearFocus(){
+  document.querySelectorAll('.edge').forEach(l=>l.classList.remove('dim','hot'));
+  Object.values(nodes).forEach(g=>g.classList.remove('dim'));
+}
+
+const heat=document.getElementById('heat');
+const maxShared=17;
+function cellColor(v){const t=Math.min(v/maxShared,1);return `rgba(240,50,91,${0.07+t*0.85})`;}
+let html='<tr><th class="corner"></th>'+order.map(o=>`<th>${o.slice(0,4)}</th>`).join('')+'</tr>';
+order.forEach(a=>{
+  html+=`<tr><th class="row">${a}</th>`;
+  order.forEach(b=>{
+    if(a===b){html+=`<td class="diag"><span class="v">${diag[a]}</span></td>`;}
+    else{const v=shared(a,b);html+=`<td style="background:${cellColor(v)}"><span class="v">${v||'·'}</span></td>`;}
+  });
+  html+='</tr>';
+});
+heat.innerHTML=html;
+const sb=document.getElementById('scalebar');
+[0,3,6,10,14,17].forEach(v=>{const s=document.createElement('span');s.style.background=cellColor(v);sb.appendChild(s);});
+</script>
+</body>
+</html>
