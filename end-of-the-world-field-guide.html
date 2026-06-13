@@ -78,6 +78,26 @@
     padding-top:9px;border-top:1px dashed var(--line);color:var(--ink60)}
   .card .collide b{color:var(--pink)}
 
+  .card{cursor:pointer}
+  .toggle{display:flex;justify-content:space-between;align-items:center;width:100%;
+    margin-top:11px;padding-top:10px;border-top:1px dashed var(--line);background:none;border:0;
+    font-family:"Space Mono",monospace;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--pink);cursor:pointer}
+  .toggle .car{font-family:"Anton",sans-serif;font-size:14px;transition:transform .15s ease}
+  .card.open .toggle .car{transform:rotate(180deg)}
+  .deep{display:none;margin:12px -14px -14px;padding:13px 14px;border-top:1.5px solid var(--ink);
+    background:#16130F0d;font-family:"Space Mono",monospace}
+  .card.open .deep{display:block}
+  .deep h4{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink60);
+    margin:0 0 7px}
+  .deep h4.gold{color:var(--gold)}
+  .deep .chips{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 13px}
+  .deep .chips:last-child{margin-bottom:0}
+  .deep .chip2{font-size:11px;border:1px solid var(--ink);padding:2px 7px;white-space:nowrap;background:var(--paper)}
+  .deep .chip2 b{color:var(--pink)}
+  .deep .chip2.cur b{color:var(--gold)}
+  .deep .oneoff{font-size:10.5px;color:var(--ink60);margin:-7px 0 13px}
+  .deep .none{color:var(--blue);font-weight:700;font-size:11px}
   .mapwrap{margin-top:26px;border:2px solid var(--ink);background:var(--paper2)}
   svg{display:block;width:100%;height:auto}
   .legend{display:flex;flex-wrap:wrap;gap:8px 20px;font-family:"Space Mono",monospace;
@@ -114,6 +134,26 @@
     font-family:"Space Mono",monospace;font-size:11.5px;color:var(--ink60);line-height:1.6}
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
   @media (max-width:560px){.card .name{font-size:25px}}
+
+  /* ---------- mobile ---------- */
+  .map-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  @media (max-width:640px){
+    .wrap{padding:0 15px}
+    header.mast{padding:34px 0 22px}
+    .sec{padding:40px 0 6px}
+    .cards{grid-template-columns:1fr;gap:12px}
+    .grid-scroll{ -webkit-overflow-scrolling:touch }
+    table.heat{min-width:600px}
+    table.heat th.row{font-size:11px}
+    .secsub{font-size:14px}
+    .runstats{font-size:11.5px;gap:5px 16px}
+    .legend{font-size:10.5px;gap:7px 14px}
+    .find .big{font-size:36px}
+    .scrollhint{display:block}
+  }
+  .scrollhint{display:none;font-family:"Space Mono",monospace;font-size:10.5px;
+    color:var(--ink60);text-align:right;padding:6px 14px 0}
+
 </style>
 </head>
 <body>
@@ -154,7 +194,7 @@
   <!-- PROFILES -->
   <section class="sec">
     <div class="seclabel"><span class="no">01</span><h2>The Nine</h2></div>
-    <p class="secsub"><b>Weeks</b> = themes/curations they showed up for. <b>Artists</b> = distinct acts they've championed. <b>Curations</b> = artist deep-dives they led (a 15-song curation counts as one signal, same as picking that artist once in a theme). <b>Reaches for</b> = what they pull back to across themes; <b>Curates</b> = the artists they've taught the group.</p>
+    <p class="secsub"><b>Weeks</b> = themes/curations they showed up for. <b>Artists</b> = distinct acts they've championed. <b>Curations</b> = artist deep-dives they led (a 15-song curation counts as one signal, same as picking that artist once in a theme). <b>Reaches for</b> = what they pull back to across themes; <b>Curates</b> = the artists they've taught the group. Click any card for the <b>deeper cut</b> — every recurring artist and every curation they've led.</p>
     <div class="cards" id="cards"></div>
   </section>
 
@@ -163,7 +203,7 @@
     <div class="seclabel"><span class="no">02</span><h2>Collision Constellation</h2></div>
     <p class="secsub">Each disc is a listener, sized by distinct artists championed. A line joins two people for every artist they've <em>both</em> picked — heavier line, more shared. Co-curated artists (Big Star, Tropicália) aren't counted as overlap, since that's one joint act, not two ears agreeing. Hover a disc to isolate its ties.</p>
     <div class="mapwrap">
-      <svg id="map" viewBox="0 0 1000 640" role="img" aria-label="Network of shared-artist connections between the nine listeners"></svg>
+      <div class="map-scroll"><svg id="map" role="img" aria-label="Network of shared-artist connections between the nine listeners"></svg></div>
       <div class="legend">
         <span class="k"><span class="swatch" style="background:var(--gold)"></span> Connector / bridge</span>
         <span class="k"><span class="swatch" style="background:var(--pink)"></span> Indie core</span>
@@ -178,7 +218,8 @@
   <section class="sec">
     <div class="seclabel"><span class="no">03</span><h2>Where They Overlap</h2></div>
     <p class="secsub">Shared artists for every pair, co-curations removed. The <b>core</b> glows in the middle; <b>Brian</b> stays pale against everyone (no tie of 4+), and <b>Kara</b> hangs on by a single thread to Rob.</p>
-    <div class="grid-scroll"><table class="heat" id="heat"></table></div>
+    <p class="scrollhint">swipe the grid sideways →</p>
+      <div class="grid-scroll"><table class="heat" id="heat"></table></div>
     <p class="heatnote">Fewer shared
       <span class="scalebar" id="scalebar"></span>
       More shared · diagonal = each person's distinct-artist count</p>
@@ -238,6 +279,7 @@ const people = [
   col:"A single thread to Rob (4); otherwise unconnected."},
 ];
 
+const DEEP={"Rob":{"recurring":[["Guided by Voices",7],["Lou Reed",3],["PJ Harvey",3],["The Modern Lovers",3],["Arthur Russell",2],["Bruce Springsteen",2],["Cameron Winter",2],["Clinic",2],["Felt",2],["Jonathan Richman",2],["Joni Mitchell",2],["Lewsberg",2],["Nico",2],["Peter Gabriel",2],["Queen",2],["Sinead O'Connor",2],["Swell Maps",2],["The Clean",2],["The Fall",2],["The Replacements",2],["The Velvet Underground",2],["They Might Be Giants",2],["Yoko Ono",2]],"oneoffs":174,"curations":[["Bruce Springsteen",33],["Wire",32],["Teenage Fanclub",31],["Clinic",25],["The Clean",23],["The Replacements",22],["Big Star",11],["The 13th Floor Elevators",9],["Guided by Voices",9],["Talking Heads",9],["Happy Mondays",8],["Fleetwood Mac",7],["Dr. Dog",7],["Lou Reed",6],["Jonathan Richman",6],["Peter Gabriel",6],["Jonathan Richman & The Modern Lovers",6],["Arthur Russell",5],["The Modern Lovers",4]]},"Adrian":{"recurring":[["Genesis",5],["Josh Ritter",5],["Kathleen Edwards",5],["Oasis",5],["Aimee Mann",4],["Ben Folds",4],["Lydia Loveless",4],["R.E.M.",4],["Radiohead",4],["Alex Cameron",3],["Andrew Bird",3],["Billy Joel",3],["Elliott Smith",3],["Frank Ocean",3],["Peter Gabriel",3],["Taylor Swift",3],["Teenage Fanclub",3],["The Sundays",3],["Warren Zevon",3],["Ani DiFranco",2],["Anna Shoemaker",2],["Bob Mould",2],["Caroline Rose",2],["Counting Crows",2],["Fountains of Wayne",2],["Frightened Rabbit",2],["Gregory Alan Isakov",2],["Hannah Georgas",2],["Janelle Monae",2],["Jason Isbell and the 400 Unit",2],["Jimmy Eat World",2],["Kacey Musgraves",2],["Middle Kids",2],["Neko Case",2],["Nickel Creek",2],["Pearl Jam",2],["Pete Yorn",2],["Phoebe Bridgers",2],["Punch Brothers",2],["Quarterflash",2],["Regina Spektor",2],["Ruston Kelly",2],["Sky Ferreira",2],["The Police",2],["U2",2]],"oneoffs":146,"curations":[["Teenage Fanclub",31],["Taylor Swift",19],["Big Star",11],["U2",11],["Jon Brion",9],["Andrew Bird",9],["The Police",9],["Ani DiFranco",7],["Aimee Mann",6],["Billy Joel",6],["R.E.M.",6],["Peter Gabriel",6],["Tom Petty & The Heartbreakers",5],["Dave Matthews Band",4]]},"Joe":{"recurring":[["Harvey Danger",5],["New Order",5],["Joy Division",4],["Nirvana",4],["Dead Kennedys",3],["Earl Sweatshirt",3],["Fucked Up",3],["Kali Uchis",3],["Nine Inch Nails",3],["R.E.M.",3],["Radiohead",3],["Vince Staples",3],["070 Shake",2],["Against Me!",2],["Alex Lahey",2],["Cindy Lee",2],["Danny Brown",2],["Devo",2],["Double Dagger",2],["Ethel Cain",2],["Gorillaz",2],["Hunchback",2],["Jenny Hval",2],["John K. Samson",2],["Neko Case",2],["Night Birds",2],["Odd Future",2],["Pixies",2],["Roky Erickson",2],["Spiritualized",2],["Suicide",2],["Superchunk",2],["Taylor Swift",2],["The Beths",2],["The Hold Steady",2],["The Replacements",2],["Trent Reznor & Atticus Ross",2],["Tyler, the Creator",2],["mclusky",2],["that dog.",2]],"oneoffs":166,"curations":[["Against Me!",16],["New Order",15],["Huggy Bear",11],["Dead Kennedys",8],["Taylor Swift",8],["Harvey Danger",7],["Tyler, the Creator",7],["Roky Erickson",7],["The Cure",6],["Pixies",6],["Nine Inch Nails",5],["Superchunk",4]]},"Greg":{"recurring":[["Mogwai",5],["Blonde Redhead",3],["Pavement",3],["The Mountain Goats",3],["The Strokes",3],["The Wants",3],["The War on Drugs",3],["Alice in Chains",2],["Bad Moves",2],["Beach House",2],["Bodega",2],["Brian Jonestown Massacre",2],["Broken Social Scene",2],["Chelsea Wolfe",2],["Cocteau Twins",2],["DIIV",2],["Francis of Delirium",2],["Junior Boys",2],["Just Mustard",2],["Leonard Cohen",2],["Nation of Language",2],["Now, Now Every Children",2],["Of Montreal",2],["Peter Matthew Bauer",2],["Radiohead",2],["Silver Jews",2],["Sorry",2],["Speedy Ortiz",2],["Spoon",2],["TV on the Radio",2],["Tamaryn",2],["The Antlers",2],["The Walkmen",2],["Times New Viking",2],["Washed Out",2],["Wild Pink",2],["Woods",2]],"oneoffs":167,"curations":[["Clinic",25],["The Mountain Goats",9],["Blonde Redhead",9],["Chelsea Wolfe",7],["Brian Jonestown Massacre",7],["Cocteau Twins",6],["Smog",5]]},"Becky":{"recurring":[["Sonic Youth",5],["Heavenly",4],["Pavement",4],["Yo La Tengo",4],["Built to Spill",3],["Cate Le Bon",3],["Modest Mouse",3],["Sebadoh",3],["Superchunk",3],["The Cure",3],["Bjork",2],["Blonde Redhead",2],["Camera Obscura",2],["Carly Simon",2],["Courtney Barnett",2],["David Bowie",2],["Elliott Smith",2],["Goat Girl",2],["J Church",2],["Kevin Devine",2],["Kim Deal",2],["Liz Phair",2],["Low",2],["Madonna",2],["Melkbelly",2],["Pixies",2],["Point Juncture WA",2],["Quasi",2],["Santigold",2],["Sault",2],["Sleater-Kinney",2],["The Beths",2]],"oneoffs":149,"curations":[["Yo La Tengo",19],["Pavement",17],["Blonde Redhead",9],["Low",8],["Bjork",7],["Cate Le Bon",6],["Sonic Youth",6],["Superchunk",4]]},"Farrah":{"recurring":[["Beach House",4],["Adrianne Lenker",3],["Bad Bad Hats",2],["Courtney Marie Andrews",2],["Fenne Lily",2],["Fiona Apple",2],["Kevin Morby",2],["Lucy Dacus",2],["Miya Folick",2],["Porridge Radio",2],["Ratboys",2],["Waxahatchee",2],["Weyes Blood",2]],"oneoffs":163,"curations":[]},"Scott":{"recurring":[["Black Heart Procession",2],["Lana Del Rey",2],["The Clash",2],["The Kinks",2],["Tom Petty",2]],"oneoffs":145,"curations":[["The Kinks",11],["T.Rex",10],["The Clash",9],["Black Heart Procession",4],["Three Mile Pilot",4]]},"Brian":{"recurring":[],"oneoffs":68,"curations":[["Melvins",10]]},"Kara":{"recurring":[],"oneoffs":75,"curations":[]}};
 const order=["Rob","Adrian","Joe","Greg","Becky","Farrah","Scott","Brian","Kara"];
 const diag={Rob:197,Adrian:191,Joe:206,Greg:204,Becky:181,Farrah:176,Scott:150,Brian:68,Kara:75};
 const pair={};
@@ -261,6 +303,18 @@ people.forEach(p=>{
                         : `<p class="kv"><span class="k">REACHES FOR·</span> <span class="none">never repeats</span> — breadth over favorites</p>`;
   const cur = p.curates ? `<p class="kv curates"><span class="k">CURATES·</span> ${p.curates}</p>`
                         : `<p class="kv curates"><span class="k">CURATES·</span> <span class="none">no deep-dives — a pure theme scout</span></p>`;
+  const d=DEEP[p.n];
+  const recChips=d.recurring.length
+    ? `<div class="chips">${d.recurring.map(([a,w])=>`<span class="chip2">${a} <b>${w}</b></span>`).join('')}</div>
+       <p class="oneoff">+ ${d.oneoffs} more artists picked in a single week</p>`
+    : `<p class="none">Never repeats — ${d.oneoffs} artists, all one-offs</p>`;
+  const curChips=d.curations.length
+    ? `<div class="chips">${d.curations.map(([a,n])=>`<span class="chip2 cur">${a} <b>${n}</b></span>`).join('')}</div>`
+    : `<p class="none">No curations — a pure theme scout</p>`;
+  const deepHTML=`<div class="deep">
+     <h4>Reaches for · weeks picked</h4>${recChips}
+     <h4 class="gold">Curations led · songs in the deep-dive</h4>${curChips}
+   </div>`;
   const el=document.createElement('div');el.className='card';
   el.innerHTML=`
    <div class="top">
@@ -276,44 +330,69 @@ people.forEach(p=>{
      ${reach}${cur}
      <p class="blurb">${p.blurb}</p>
      <p class="collide"><b>↔</b> ${p.col}</p>
+     <button class="toggle" aria-expanded="false">Deeper cut <span class="car">\u25BE</span></button>
+     ${deepHTML}
    </div>`;
+  const tog=el.querySelector('.toggle');
+  tog.addEventListener('click',()=>{const open=el.classList.toggle('open');
+    tog.setAttribute('aria-expanded',open);
+    tog.childNodes[0].nodeValue=open?'Close ':'Deeper cut ';});
   cards.appendChild(el);
 });
 
 const NS="http://www.w3.org/2000/svg",svg=document.getElementById('map');
-const W=1000,H=640,PAD=70;
-const pos={};people.forEach(p=>pos[p.n]={x:PAD+p.x*(W-2*PAD),y:PAD+p.y*(H-2*PAD)});
-const rOf=p=>12+Math.sqrt(p.artists)*2.0;
-const edges=[];
-order.forEach((a,i)=>order.forEach((b,j)=>{if(j>i){const v=shared(a,b);if(v>=4)edges.push({a,b,v});}}));
-const gEdges=document.createElementNS(NS,'g');svg.appendChild(gEdges);
-edges.forEach(e=>{
-  const l=document.createElementNS(NS,'line');
-  l.setAttribute('x1',pos[e.a].x);l.setAttribute('y1',pos[e.a].y);
-  l.setAttribute('x2',pos[e.b].x);l.setAttribute('y2',pos[e.b].y);
-  l.setAttribute('class','edge');l.setAttribute('stroke-width',1+(e.v-3)*0.8);
-  l.setAttribute('stroke-opacity',0.18+(e.v/17)*0.5);
-  l.dataset.a=e.a;l.dataset.b=e.b;gEdges.appendChild(l);
-});
-const nodes={};
-people.forEach(p=>{
-  const g=document.createElementNS(NS,'g');
-  g.setAttribute('class','node'+(p.grp==='outlier'?' outlier':''));
-  g.setAttribute('transform',`translate(${pos[p.n].x},${pos[p.n].y})`);
-  const r=rOf(p);
-  const reg=document.createElementNS(NS,'circle');
-  reg.setAttribute('class','reg');reg.setAttribute('r',r);reg.setAttribute('cx',3.5);reg.setAttribute('cy',3.5);
-  if(p.grp==='bridge'){reg.style.fill='var(--gold)';}
-  const hit=document.createElementNS(NS,'circle');hit.setAttribute('class','hit');hit.setAttribute('r',r);
-  const ini=document.createElementNS(NS,'text');
-  ini.setAttribute('class','init');ini.setAttribute('font-size',r*0.85);ini.textContent=p.n[0];
-  const lbl=document.createElementNS(NS,'text');
-  lbl.setAttribute('class','lbl');lbl.setAttribute('y',r+15);lbl.textContent=p.n.toUpperCase();
-  g.append(reg,hit,ini,lbl);svg.appendChild(g);nodes[p.n]=g;
-  g.addEventListener('mouseenter',()=>focus(p.n));
-  g.addEventListener('mouseleave',clearFocus);
-});
+// portrait positions tuned for narrow screens (keeps the same topology, more vertical room)
+const MPOS={Adrian:[.40,.12],Rob:[.67,.20],Scott:[.15,.27],Becky:[.46,.37],
+  Joe:[.25,.47],Greg:[.63,.51],Farrah:[.83,.41],Brian:[.22,.81],Kara:[.78,.83]};
+let nodes={}, activeFocus=null;
+
+function buildMap(mobile){
+  while(svg.firstChild) svg.removeChild(svg.firstChild);
+  nodes={}; activeFocus=null;
+  const cfg = mobile
+    ? {W:560,H:780,pad:62,labelFont:19,initMul:.9,rBase:10,rMul:2.5,lblGap:21}
+    : {W:1000,H:640,pad:70,labelFont:12,initMul:.85,rBase:12,rMul:2.0,lblGap:15};
+  svg.setAttribute('viewBox',`0 0 ${cfg.W} ${cfg.H}`);
+  const pos={};
+  people.forEach(p=>{
+    const nx = mobile ? MPOS[p.n][0] : p.x;
+    const ny = mobile ? MPOS[p.n][1] : p.y;
+    pos[p.n]={x:cfg.pad+nx*(cfg.W-2*cfg.pad), y:cfg.pad+ny*(cfg.H-2*cfg.pad)};
+  });
+  const rOf=p=>cfg.rBase+Math.sqrt(p.artists)*cfg.rMul;
+  const edges=[];
+  order.forEach((a,i)=>order.forEach((b,j)=>{if(j>i){const v=shared(a,b);if(v>=4)edges.push({a,b,v});}}));
+  const gEdges=document.createElementNS(NS,'g');svg.appendChild(gEdges);
+  edges.forEach(e=>{
+    const l=document.createElementNS(NS,'line');
+    l.setAttribute('x1',pos[e.a].x);l.setAttribute('y1',pos[e.a].y);
+    l.setAttribute('x2',pos[e.b].x);l.setAttribute('y2',pos[e.b].y);
+    l.setAttribute('class','edge');l.setAttribute('stroke-width',(mobile?1.4:1)+(e.v-3)*(mobile?1.0:0.8));
+    l.setAttribute('stroke-opacity',0.18+(e.v/17)*0.5);
+    l.dataset.a=e.a;l.dataset.b=e.b;gEdges.appendChild(l);
+  });
+  people.forEach(p=>{
+    const g=document.createElementNS(NS,'g');
+    g.setAttribute('class','node'+(p.grp==='outlier'?' outlier':''));
+    g.setAttribute('transform',`translate(${pos[p.n].x},${pos[p.n].y})`);
+    const r=rOf(p);
+    const reg=document.createElementNS(NS,'circle');
+    reg.setAttribute('class','reg');reg.setAttribute('r',r);reg.setAttribute('cx',3.5);reg.setAttribute('cy',3.5);
+    if(p.grp==='bridge'){reg.style.fill='var(--gold)';}
+    const hit=document.createElementNS(NS,'circle');hit.setAttribute('class','hit');hit.setAttribute('r',r);
+    const ini=document.createElementNS(NS,'text');
+    ini.setAttribute('class','init');ini.setAttribute('font-size',r*cfg.initMul);ini.textContent=p.n[0];
+    const lbl=document.createElementNS(NS,'text');
+    lbl.setAttribute('class','lbl');lbl.setAttribute('y',r+cfg.lblGap);
+    lbl.setAttribute('font-size',cfg.labelFont);lbl.textContent=p.n.toUpperCase();
+    g.append(reg,hit,ini,lbl);svg.appendChild(g);nodes[p.n]=g;
+    g.addEventListener('mouseenter',()=>{if(!('ontouchstart'in window))focus(p.n);});
+    g.addEventListener('mouseleave',()=>{if(!('ontouchstart'in window))clearFocus();});
+    g.addEventListener('click',()=>{activeFocus===p.n?clearFocus():focus(p.n);});
+  });
+}
 function focus(name){
+  activeFocus=name;
   const keep=new Set([name]);
   document.querySelectorAll('.edge').forEach(l=>{
     if(l.dataset.a===name||l.dataset.b===name){l.classList.add('hot');l.classList.remove('dim');keep.add(l.dataset.a);keep.add(l.dataset.b);}
@@ -322,9 +401,17 @@ function focus(name){
   Object.entries(nodes).forEach(([n,g])=>g.classList.toggle('dim',!keep.has(n)));
 }
 function clearFocus(){
+  activeFocus=null;
   document.querySelectorAll('.edge').forEach(l=>l.classList.remove('dim','hot'));
   Object.values(nodes).forEach(g=>g.classList.remove('dim'));
 }
+const mq=window.matchMedia('(max-width:640px)');
+buildMap(mq.matches);
+let wasMobile=mq.matches, rt;
+window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{
+  const m=window.matchMedia('(max-width:640px)').matches;
+  if(m!==wasMobile){wasMobile=m;buildMap(m);}
+},180);});
 
 const heat=document.getElementById('heat');
 const maxShared=17;
