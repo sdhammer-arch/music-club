@@ -167,7 +167,7 @@
       <span><b>178</b> weeks</span>
       <span><b>Apr 2020</b> → <b>Jun 2026</b></span>
       <span><b>9</b> listeners</span>
-      <span><b>66</b> curations led between them</span>
+      <span><b>65+</b> curations &amp; scene deep-dives led</span>
       <span><b>1</b> near-universal artist (the Beatles — and only via a Beatles week)</span>
     </p>
   </header>
@@ -181,12 +181,12 @@
         <p>artists the whole group independently shares. Outside the Beatles (a theme week) and Springsteen, no act reaches even four of the nine. Taste here is unusually individuated.</p>
       </div>
       <div class="find">
-        <div class="big blue">2</div>
-        <p>pure scouts who've <b>never led a deep-dive</b> — Farrah and Kara — bringing a fresh name almost every week instead. Rob, by contrast, has curated 19.</p>
+        <div class="big blue">1</div>
+        <p>pure scout — the only one who's <b>never led a deep-dive</b> — Farrah — bringing a fresh name nearly every week instead. Rob has led 19; even Kara co-led one (Tropicália, with Scott).</p>
       </div>
       <div class="find">
         <div class="big">17</div>
-        <p>shared artists between Joe and Becky, the single strongest tie. The '90s-indie / dream-pop core (Joe, Becky, Greg, Farrah) is where the collections actually touch.</p>
+        <p>shared artists tie Joe and Becky — the strongest single bond. Just behind: two curatorial duos at 16, Rob &amp; Adrian and Becky &amp; Greg, lifted by the curations they built together.</p>
       </div>
     </div>
   </section>
@@ -201,14 +201,14 @@
   <!-- CONSTELLATION -->
   <section class="sec">
     <div class="seclabel"><span class="no">02</span><h2>Collision Constellation</h2></div>
-    <p class="secsub">Each disc is a listener, sized by distinct artists championed. A line joins two people for every artist they've <em>both</em> picked — heavier line, more shared. Co-curated artists (Big Star, Tropicália) aren't counted as overlap, since that's one joint act, not two ears agreeing. Hover a disc to isolate its ties.</p>
+    <p class="secsub">Each disc is a listener, sized by distinct artists championed. A line joins two people by <em>tie strength</em> — the artists they've both picked, plus a bonus for every curation they built together. Co-leading a whole week is a deliberate shared-taste signal, so it strengthens the link rather than being set aside. Heavier line, stronger tie. Hover or tap a disc to isolate its ties.</p>
     <div class="mapwrap">
-      <div class="map-scroll"><svg id="map" role="img" aria-label="Network of shared-artist connections between the nine listeners"></svg></div>
+      <div class="map-scroll"><svg id="map" role="img" aria-label="Network of tie strength between the nine listeners"></svg></div>
       <div class="legend">
         <span class="k"><span class="swatch" style="background:var(--gold)"></span> Connector / bridge</span>
         <span class="k"><span class="swatch" style="background:var(--pink)"></span> Indie core</span>
         <span class="k"><span class="swatch" style="background:var(--blue)"></span> Outlier</span>
-        <span class="k">Line = shared artists (4–17)</span>
+        <span class="k">Line = tie strength (4–17)</span>
         <span class="k">Disc = distinct artists (68–206)</span>
       </div>
     </div>
@@ -217,16 +217,16 @@
   <!-- HEATMAP -->
   <section class="sec">
     <div class="seclabel"><span class="no">03</span><h2>Where They Overlap</h2></div>
-    <p class="secsub">Shared artists for every pair, co-curations removed. The <b>core</b> glows in the middle; <b>Brian</b> stays pale against everyone (no tie of 4+), and <b>Kara</b> hangs on by a single thread to Rob.</p>
+    <p class="secsub">Tie strength for every pair — shared artists plus the curations they co-led (counted heavier). The <b>core</b> glows; the curatorial duos <b>Rob+Adrian</b> and <b>Becky+Greg</b> now light up; <b>Brian</b> stays pale (he curates solo); <b>Kara</b> shows two threads — Rob, and Scott from their Tropicália co-lead.</p>
     <p class="scrollhint">swipe the grid sideways →</p>
       <div class="grid-scroll"><table class="heat" id="heat"></table></div>
-    <p class="heatnote">Fewer shared
+    <p class="heatnote">Weaker tie
       <span class="scalebar" id="scalebar"></span>
-      More shared · diagonal = each person's distinct-artist count</p>
+      Stronger tie · diagonal = each person's distinct-artist count</p>
   </section>
 
   <footer>
-    METHOD · Picks parsed and attributed per contributor across 178 weekly sheets. To keep curations from drowning out theme picks, an artist counts once per week it appears for a person, regardless of track count — so a 32-song Wire curation and a single Wire theme pick weigh the same. Top-artist lists rank by number of distinct weeks; node size is distinct artists; overlap is shared artists with single-week co-curations (e.g. Rob &amp; Adrian on Big Star, Kara's Tropicália) excluded. Combined credits are counted for each named member. Characterizations are read off actual picks, not external genre data.
+    METHOD · Picks parsed and attributed per contributor across 178 weekly sheets. To keep curations from drowning out theme picks, an artist counts once per week it appears for a person, regardless of track count — so a 32-song Wire curation and a single Wire theme pick weigh the same. Top-artist lists rank by number of distinct weeks; node size is distinct artists; tie strength is shared artists plus a weighting (×3) for every curation a pair co-led — co-leading a week is treated as a strong shared signal rather than removed (Rob &amp; Adrian co-led three; Scott &amp; Kara built Tropicália). Curations include single-artist deep-dives and scene/genre curations (e.g. the Tropicália co-lead by Scott &amp; Kara, Kara's techno set); co-leads are credited to each curator. The automated pass favors single-artist deep-dives, so scene curations are added on inspection and may still be undercounted. Combined credits are counted for each named member. Characterizations are read off actual picks, not external genre data.
   </footer>
 </div>
 
@@ -236,64 +236,64 @@ const people = [
   reach:["Lou Reed","PJ Harvey","Velvet Underground","Joni Mitchell","Felt","The Modern Lovers"],
   curates:"Wire · The Clean · Teenage Fanclub · Replacements · Springsteen · Big Star · 13th Floor Elevators",
   blurb:"The club's historian — 19 deep-dives, more than anyone. Left to a theme he reaches for the art-rock and post-punk canon: Lou Reed, the Velvets, PJ Harvey.",
-  col:"Connects widest — Greg (10), Joe (9), Scott / Becky / Adrian (7 each)."},
+  col:"The curatorial hub — co-led six curations (three with Adrian). Ties: Adrian (16), Greg (13), Joe (12), Scott (10)."},
  {n:"Adrian",role:"The Poptimist",weeks:159,artists:191,cur:14,grp:"bridge",x:.45,y:.22,
   reach:["Josh Ritter","Kathleen Edwards","Oasis","Ben Folds","Lydia Loveless","Warren Zevon"],
   curates:"Teenage Fanclub · Taylor Swift · U2 · Andrew Bird · Jon Brion · Aimee Mann · Billy Joel",
   blurb:"Melody and craft, unironically. His curations run to the canon; his own theme picks lean alt-country and Britpop — Josh Ritter, Kathleen Edwards, Oasis.",
-  col:"The poptimism bridge to Joe (11); also Becky and Farrah (7)."},
+  col:"Bound tightest to Rob (16) — they co-led Big Star, Teenage Fanclub & Peter Gabriel. Then Joe (11), Becky & Farrah (7)."},
  {n:"Joe",role:"The Maximalist",weeks:159,artists:206,cur:12,grp:"core",x:.36,y:.53,
   reach:["Harvey Danger","New Order","Earl Sweatshirt","Fucked Up","Nine Inch Nails","Vince Staples"],
   curates:"Against Me! · New Order · Huggy Bear · Dead Kennedys · Tyler, the Creator · Roky Erickson",
   blurb:"The widest net of all — most distinct artists (206). Hardcore one week, hip-hop (Earl, Vince Staples, Danny Brown) and industrial the next, pop with no embarrassment.",
-  col:"The strongest tie in the group — Joe ↔ Becky (17)."},
+  col:"Strongest tie is Becky (17); co-led the Roky Erickson week with Rob (→12)."},
  {n:"Greg",role:"The Texturalist",weeks:150,artists:204,cur:7,grp:"core",x:.57,y:.62,
   reach:["Mogwai","The Mountain Goats","The War on Drugs","Chelsea Wolfe","DIIV","Just Mustard"],
   curates:"Clinic · Blonde Redhead · Brian Jonestown Massacre · Cocteau Twins · Chelsea Wolfe",
   blurb:"Picks for mood and texture — dream-pop, shoegaze, post-rock and the dark-ethereal, with a steady feed of new bands (DIIV, Just Mustard, The Wants).",
-  col:"Collides hardest with Farrah (16) and Becky (13)."},
+  col:"Core collisions — Becky (16, co-led Blonde Redhead), Farrah (16), Rob (13, co-led Clinic)."},
  {n:"Becky",role:"The Indie Core",weeks:148,artists:181,cur:8,grp:"core",x:.51,y:.40,
   reach:["Sonic Youth","Heavenly","Built to Spill","Sebadoh","Camera Obscura","Kim Deal"],
   curates:"Yo La Tengo · Pavement · Blonde Redhead · Low · Björk · Sonic Youth · Cate Le Bon",
   blurb:"The '90s college-rock and dream-pop heart — curated Yo La Tengo and Pavement, reaches for Sonic Youth and twee (Heavenly, Camera Obscura). The most-shared taste here.",
-  col:"Center of the core — Joe (17), Greg (13), Rob & Adrian (7)."},
+  col:"Center of the core — Joe (17), Greg (16, co-led Blonde Redhead), Rob & Adrian (7)."},
  {n:"Farrah",role:"Songwriter's Scout",weeks:127,artists:176,cur:0,grp:"core",x:.69,y:.46,
   reach:["Adrianne Lenker","Weyes Blood","Courtney Marie Andrews","Fenne Lily","Kevin Morby"],
   curates:null,
   blurb:"Never led a curation; instead brings a fresh, current name nearly every week (176 artists, rarely repeated) — contemporary indie and women-fronted songwriting.",
   col:"Collides with Greg (16) and Adrian (7) on dream-pop and craft."},
- {n:"Scott",role:"The Canon Keeper",weeks:93,artists:150,cur:5,grp:"outlier",x:.165,y:.30,
+ {n:"Scott",role:"The Canon Keeper",weeks:93,artists:150,cur:7,grp:"outlier",x:.165,y:.30,
   reach:["Black Heart Procession","Lana Del Rey","The Clash","The Kinks"],
-  curates:"The Kinks · T. Rex · The Clash · Black Heart Procession · Three Mile Pilot",
+  curates:"The Kinks · T. Rex · The Clash · Black Heart Procession · Three Mile Pilot · Arthur Russell (co-led w/ Rob) · Tropicália 1968 (co-led w/ Kara)",
   blurb:"Curates the canon and its glam/punk edges (Kinks, T. Rex, Clash) and the cult acts beside it — Three Mile Pilot, Arthur Russell, desert blues.",
-  col:"Mostly touches Rob (7) — canon meeting canon."},
+  col:"Canon-cult connector — co-led Arthur Russell with Rob (→10) and Tropicália with Kara (→4)."},
  {n:"Brian",role:"The Heavy",weeks:36,artists:68,cur:1,grp:"outlier",x:.13,y:.72,
   reach:null,
   curates:"Melvins",
   blurb:"One deep-dive (Melvins) and otherwise a wall of one-off Aussie proto-punk and Oi! — Radio Birdman, The Saints, Cosmic Psychos. The loudest, heaviest shelf.",
-  col:"No tie of 4+ to anyone — the true isolate."},
- {n:"Kara",role:"The Globe-Trotter",weeks:42,artists:75,cur:0,grp:"outlier",x:.85,y:.74,
+  col:"No tie of 4+ to anyone — curates solo (Oi!, Melvins). The true isolate."},
+ {n:"Kara",role:"The Globe-Trotter",weeks:42,artists:75,cur:2,grp:"outlier",x:.85,y:.74,
   reach:null,
-  curates:null,
-  blurb:"A near-perfect omnivore — 75 artists across her picks, almost never the same one twice. Tropicália, funk, soul and post-punk oddities, far off the group's indie map.",
-  col:"A single thread to Rob (4); otherwise unconnected."},
+  curates:"Tropicália 1968 (co-led w/ Scott) · Techno — “Beep Boop Basics”",
+  blurb:"A near-perfect omnivore — 75 artists, almost never the same one twice. Co-led the Tropicália scene curation with Scott and led a techno deep-dive (“Beep Boop Basics”); otherwise roams funk, soul and post-punk oddities far off the group's indie map.",
+  col:"Two threads out — Rob (4) and Scott (4), the latter from co-leading Tropicália."},
 ];
 
-const DEEP={"Rob":{"recurring":[["Guided by Voices",7],["Lou Reed",3],["PJ Harvey",3],["The Modern Lovers",3],["Arthur Russell",2],["Bruce Springsteen",2],["Cameron Winter",2],["Clinic",2],["Felt",2],["Jonathan Richman",2],["Joni Mitchell",2],["Lewsberg",2],["Nico",2],["Peter Gabriel",2],["Queen",2],["Sinead O'Connor",2],["Swell Maps",2],["The Clean",2],["The Fall",2],["The Replacements",2],["The Velvet Underground",2],["They Might Be Giants",2],["Yoko Ono",2]],"oneoffs":174,"curations":[["Bruce Springsteen",33],["Wire",32],["Teenage Fanclub",31],["Clinic",25],["The Clean",23],["The Replacements",22],["Big Star",11],["The 13th Floor Elevators",9],["Guided by Voices",9],["Talking Heads",9],["Happy Mondays",8],["Fleetwood Mac",7],["Dr. Dog",7],["Lou Reed",6],["Jonathan Richman",6],["Peter Gabriel",6],["Jonathan Richman & The Modern Lovers",6],["Arthur Russell",5],["The Modern Lovers",4]]},"Adrian":{"recurring":[["Genesis",5],["Josh Ritter",5],["Kathleen Edwards",5],["Oasis",5],["Aimee Mann",4],["Ben Folds",4],["Lydia Loveless",4],["R.E.M.",4],["Radiohead",4],["Alex Cameron",3],["Andrew Bird",3],["Billy Joel",3],["Elliott Smith",3],["Frank Ocean",3],["Peter Gabriel",3],["Taylor Swift",3],["Teenage Fanclub",3],["The Sundays",3],["Warren Zevon",3],["Ani DiFranco",2],["Anna Shoemaker",2],["Bob Mould",2],["Caroline Rose",2],["Counting Crows",2],["Fountains of Wayne",2],["Frightened Rabbit",2],["Gregory Alan Isakov",2],["Hannah Georgas",2],["Janelle Monae",2],["Jason Isbell and the 400 Unit",2],["Jimmy Eat World",2],["Kacey Musgraves",2],["Middle Kids",2],["Neko Case",2],["Nickel Creek",2],["Pearl Jam",2],["Pete Yorn",2],["Phoebe Bridgers",2],["Punch Brothers",2],["Quarterflash",2],["Regina Spektor",2],["Ruston Kelly",2],["Sky Ferreira",2],["The Police",2],["U2",2]],"oneoffs":146,"curations":[["Teenage Fanclub",31],["Taylor Swift",19],["Big Star",11],["U2",11],["Jon Brion",9],["Andrew Bird",9],["The Police",9],["Ani DiFranco",7],["Aimee Mann",6],["Billy Joel",6],["R.E.M.",6],["Peter Gabriel",6],["Tom Petty & The Heartbreakers",5],["Dave Matthews Band",4]]},"Joe":{"recurring":[["Harvey Danger",5],["New Order",5],["Joy Division",4],["Nirvana",4],["Dead Kennedys",3],["Earl Sweatshirt",3],["Fucked Up",3],["Kali Uchis",3],["Nine Inch Nails",3],["R.E.M.",3],["Radiohead",3],["Vince Staples",3],["070 Shake",2],["Against Me!",2],["Alex Lahey",2],["Cindy Lee",2],["Danny Brown",2],["Devo",2],["Double Dagger",2],["Ethel Cain",2],["Gorillaz",2],["Hunchback",2],["Jenny Hval",2],["John K. Samson",2],["Neko Case",2],["Night Birds",2],["Odd Future",2],["Pixies",2],["Roky Erickson",2],["Spiritualized",2],["Suicide",2],["Superchunk",2],["Taylor Swift",2],["The Beths",2],["The Hold Steady",2],["The Replacements",2],["Trent Reznor & Atticus Ross",2],["Tyler, the Creator",2],["mclusky",2],["that dog.",2]],"oneoffs":166,"curations":[["Against Me!",16],["New Order",15],["Huggy Bear",11],["Dead Kennedys",8],["Taylor Swift",8],["Harvey Danger",7],["Tyler, the Creator",7],["Roky Erickson",7],["The Cure",6],["Pixies",6],["Nine Inch Nails",5],["Superchunk",4]]},"Greg":{"recurring":[["Mogwai",5],["Blonde Redhead",3],["Pavement",3],["The Mountain Goats",3],["The Strokes",3],["The Wants",3],["The War on Drugs",3],["Alice in Chains",2],["Bad Moves",2],["Beach House",2],["Bodega",2],["Brian Jonestown Massacre",2],["Broken Social Scene",2],["Chelsea Wolfe",2],["Cocteau Twins",2],["DIIV",2],["Francis of Delirium",2],["Junior Boys",2],["Just Mustard",2],["Leonard Cohen",2],["Nation of Language",2],["Now, Now Every Children",2],["Of Montreal",2],["Peter Matthew Bauer",2],["Radiohead",2],["Silver Jews",2],["Sorry",2],["Speedy Ortiz",2],["Spoon",2],["TV on the Radio",2],["Tamaryn",2],["The Antlers",2],["The Walkmen",2],["Times New Viking",2],["Washed Out",2],["Wild Pink",2],["Woods",2]],"oneoffs":167,"curations":[["Clinic",25],["The Mountain Goats",9],["Blonde Redhead",9],["Chelsea Wolfe",7],["Brian Jonestown Massacre",7],["Cocteau Twins",6],["Smog",5]]},"Becky":{"recurring":[["Sonic Youth",5],["Heavenly",4],["Pavement",4],["Yo La Tengo",4],["Built to Spill",3],["Cate Le Bon",3],["Modest Mouse",3],["Sebadoh",3],["Superchunk",3],["The Cure",3],["Bjork",2],["Blonde Redhead",2],["Camera Obscura",2],["Carly Simon",2],["Courtney Barnett",2],["David Bowie",2],["Elliott Smith",2],["Goat Girl",2],["J Church",2],["Kevin Devine",2],["Kim Deal",2],["Liz Phair",2],["Low",2],["Madonna",2],["Melkbelly",2],["Pixies",2],["Point Juncture WA",2],["Quasi",2],["Santigold",2],["Sault",2],["Sleater-Kinney",2],["The Beths",2]],"oneoffs":149,"curations":[["Yo La Tengo",19],["Pavement",17],["Blonde Redhead",9],["Low",8],["Bjork",7],["Cate Le Bon",6],["Sonic Youth",6],["Superchunk",4]]},"Farrah":{"recurring":[["Beach House",4],["Adrianne Lenker",3],["Bad Bad Hats",2],["Courtney Marie Andrews",2],["Fenne Lily",2],["Fiona Apple",2],["Kevin Morby",2],["Lucy Dacus",2],["Miya Folick",2],["Porridge Radio",2],["Ratboys",2],["Waxahatchee",2],["Weyes Blood",2]],"oneoffs":163,"curations":[]},"Scott":{"recurring":[["Black Heart Procession",2],["Lana Del Rey",2],["The Clash",2],["The Kinks",2],["Tom Petty",2]],"oneoffs":145,"curations":[["The Kinks",11],["T.Rex",10],["The Clash",9],["Black Heart Procession",4],["Three Mile Pilot",4]]},"Brian":{"recurring":[],"oneoffs":68,"curations":[["Melvins",10]]},"Kara":{"recurring":[],"oneoffs":75,"curations":[]}};
+const DEEP={"Rob":{"recurring":[["Guided by Voices",7],["Lou Reed",3],["PJ Harvey",3],["The Modern Lovers",3],["Arthur Russell",2],["Bruce Springsteen",2],["Cameron Winter",2],["Clinic",2],["Felt",2],["Jonathan Richman",2],["Joni Mitchell",2],["Lewsberg",2],["Nico",2],["Peter Gabriel",2],["Queen",2],["Sinead O'Connor",2],["Swell Maps",2],["The Clean",2],["The Fall",2],["The Replacements",2],["The Velvet Underground",2],["They Might Be Giants",2],["Yoko Ono",2]],"oneoffs":174,"curations":[["Bruce Springsteen",33],["Wire",32],["Teenage Fanclub — co-led w/ Adrian",31],["Clinic — co-led w/ Greg",25],["The Clean",23],["The Replacements",22],["Big Star — co-led w/ Adrian",11],["The 13th Floor Elevators — co-led w/ Joe (Roky wk)",9],["Guided by Voices",9],["Talking Heads",9],["Happy Mondays",8],["Fleetwood Mac",7],["Dr. Dog",7],["Lou Reed",6],["Jonathan Richman",6],["Peter Gabriel — co-led w/ Adrian",6],["Jonathan Richman & The Modern Lovers",6],["Arthur Russell — co-led w/ Scott",5],["The Modern Lovers",4]]},"Adrian":{"recurring":[["Genesis",5],["Josh Ritter",5],["Kathleen Edwards",5],["Oasis",5],["Aimee Mann",4],["Ben Folds",4],["Lydia Loveless",4],["R.E.M.",4],["Radiohead",4],["Alex Cameron",3],["Andrew Bird",3],["Billy Joel",3],["Elliott Smith",3],["Frank Ocean",3],["Peter Gabriel",3],["Taylor Swift",3],["Teenage Fanclub",3],["The Sundays",3],["Warren Zevon",3],["Ani DiFranco",2],["Anna Shoemaker",2],["Bob Mould",2],["Caroline Rose",2],["Counting Crows",2],["Fountains of Wayne",2],["Frightened Rabbit",2],["Gregory Alan Isakov",2],["Hannah Georgas",2],["Janelle Monae",2],["Jason Isbell and the 400 Unit",2],["Jimmy Eat World",2],["Kacey Musgraves",2],["Middle Kids",2],["Neko Case",2],["Nickel Creek",2],["Pearl Jam",2],["Pete Yorn",2],["Phoebe Bridgers",2],["Punch Brothers",2],["Quarterflash",2],["Regina Spektor",2],["Ruston Kelly",2],["Sky Ferreira",2],["The Police",2],["U2",2]],"oneoffs":146,"curations":[["Teenage Fanclub — co-led w/ Rob",31],["Taylor Swift",19],["Big Star — co-led w/ Rob",11],["U2",11],["Jon Brion",9],["Andrew Bird",9],["The Police",9],["Ani DiFranco",7],["Aimee Mann",6],["Billy Joel",6],["R.E.M.",6],["Peter Gabriel — co-led w/ Rob",6],["Tom Petty & The Heartbreakers",5],["Dave Matthews Band",4]]},"Joe":{"recurring":[["Harvey Danger",5],["New Order",5],["Joy Division",4],["Nirvana",4],["Dead Kennedys",3],["Earl Sweatshirt",3],["Fucked Up",3],["Kali Uchis",3],["Nine Inch Nails",3],["R.E.M.",3],["Radiohead",3],["Vince Staples",3],["070 Shake",2],["Against Me!",2],["Alex Lahey",2],["Cindy Lee",2],["Danny Brown",2],["Devo",2],["Double Dagger",2],["Ethel Cain",2],["Gorillaz",2],["Hunchback",2],["Jenny Hval",2],["John K. Samson",2],["Neko Case",2],["Night Birds",2],["Odd Future",2],["Pixies",2],["Roky Erickson",2],["Spiritualized",2],["Suicide",2],["Superchunk",2],["Taylor Swift",2],["The Beths",2],["The Hold Steady",2],["The Replacements",2],["Trent Reznor & Atticus Ross",2],["Tyler, the Creator",2],["mclusky",2],["that dog.",2]],"oneoffs":166,"curations":[["Against Me!",16],["New Order",15],["Huggy Bear",11],["Dead Kennedys",8],["Taylor Swift",8],["Harvey Danger",7],["Tyler, the Creator",7],["Roky Erickson — co-led w/ Rob",7],["The Cure",6],["Pixies",6],["Nine Inch Nails",5],["Superchunk",4]]},"Greg":{"recurring":[["Mogwai",5],["Blonde Redhead",3],["Pavement",3],["The Mountain Goats",3],["The Strokes",3],["The Wants",3],["The War on Drugs",3],["Alice in Chains",2],["Bad Moves",2],["Beach House",2],["Bodega",2],["Brian Jonestown Massacre",2],["Broken Social Scene",2],["Chelsea Wolfe",2],["Cocteau Twins",2],["DIIV",2],["Francis of Delirium",2],["Junior Boys",2],["Just Mustard",2],["Leonard Cohen",2],["Nation of Language",2],["Now, Now Every Children",2],["Of Montreal",2],["Peter Matthew Bauer",2],["Radiohead",2],["Silver Jews",2],["Sorry",2],["Speedy Ortiz",2],["Spoon",2],["TV on the Radio",2],["Tamaryn",2],["The Antlers",2],["The Walkmen",2],["Times New Viking",2],["Washed Out",2],["Wild Pink",2],["Woods",2]],"oneoffs":167,"curations":[["Clinic — co-led w/ Rob",25],["The Mountain Goats",9],["Blonde Redhead — co-led w/ Becky",9],["Chelsea Wolfe",7],["Brian Jonestown Massacre",7],["Cocteau Twins",6],["Smog",5]]},"Becky":{"recurring":[["Sonic Youth",5],["Heavenly",4],["Pavement",4],["Yo La Tengo",4],["Built to Spill",3],["Cate Le Bon",3],["Modest Mouse",3],["Sebadoh",3],["Superchunk",3],["The Cure",3],["Bjork",2],["Blonde Redhead",2],["Camera Obscura",2],["Carly Simon",2],["Courtney Barnett",2],["David Bowie",2],["Elliott Smith",2],["Goat Girl",2],["J Church",2],["Kevin Devine",2],["Kim Deal",2],["Liz Phair",2],["Low",2],["Madonna",2],["Melkbelly",2],["Pixies",2],["Point Juncture WA",2],["Quasi",2],["Santigold",2],["Sault",2],["Sleater-Kinney",2],["The Beths",2]],"oneoffs":149,"curations":[["Yo La Tengo",19],["Pavement",17],["Blonde Redhead — co-led w/ Greg",9],["Low",8],["Bjork",7],["Cate Le Bon",6],["Sonic Youth",6],["Superchunk",4]]},"Farrah":{"recurring":[["Beach House",4],["Adrianne Lenker",3],["Bad Bad Hats",2],["Courtney Marie Andrews",2],["Fenne Lily",2],["Fiona Apple",2],["Kevin Morby",2],["Lucy Dacus",2],["Miya Folick",2],["Porridge Radio",2],["Ratboys",2],["Waxahatchee",2],["Weyes Blood",2]],"oneoffs":163,"curations":[]},"Scott":{"recurring":[["Black Heart Procession",2],["Lana Del Rey",2],["The Clash",2],["The Kinks",2],["Tom Petty",2]],"oneoffs":145,"curations":[["The Kinks",11],["T.Rex",10],["The Clash",9],["Black Heart Procession",4],["Three Mile Pilot",4],["Tropicália 1968 — co-led w/ Kara",4],["Arthur Russell — co-led w/ Rob",4]]},"Brian":{"recurring":[],"oneoffs":68,"curations":[["Melvins",10]]},"Kara":{"recurring":[],"oneoffs":75,"curations":[["Tropicália 1968 — co-led w/ Scott",5],["Techno · “Beep Boop Basics”",8]]}};
 const order=["Rob","Adrian","Joe","Greg","Becky","Farrah","Scott","Brian","Kara"];
 const diag={Rob:197,Adrian:191,Joe:206,Greg:204,Becky:181,Farrah:176,Scott:150,Brian:68,Kara:75};
 const pair={};
 function set(a,b,v){pair[a+"|"+b]=v;pair[b+"|"+a]=v;}
-set("Rob","Adrian",7);set("Rob","Joe",9);set("Rob","Greg",10);set("Rob","Becky",7);
-set("Rob","Farrah",5);set("Rob","Scott",7);set("Rob","Kara",4);set("Rob","Brian",1);
+set("Rob","Adrian",16);set("Rob","Joe",12);set("Rob","Greg",13);set("Rob","Becky",7);
+set("Rob","Farrah",5);set("Rob","Scott",10);set("Rob","Kara",4);set("Rob","Brian",1);
 set("Adrian","Joe",11);set("Adrian","Greg",3);set("Adrian","Becky",7);set("Adrian","Farrah",7);
 set("Adrian","Scott",3);set("Adrian","Brian",1);set("Adrian","Kara",1);
 set("Joe","Greg",5);set("Joe","Becky",17);set("Joe","Farrah",8);set("Joe","Scott",3);
 set("Joe","Kara",3);set("Joe","Brian",0);
-set("Greg","Becky",13);set("Greg","Farrah",16);set("Greg","Scott",3);set("Greg","Kara",2);set("Greg","Brian",0);
+set("Greg","Becky",16);set("Greg","Farrah",16);set("Greg","Scott",3);set("Greg","Kara",2);set("Greg","Brian",0);
 set("Becky","Farrah",4);set("Becky","Scott",5);set("Becky","Kara",0);set("Becky","Brian",0);
 set("Farrah","Scott",3);set("Farrah","Brian",1);set("Farrah","Kara",0);
-set("Scott","Brian",0);set("Scott","Kara",1);
+set("Scott","Brian",0);set("Scott","Kara",4);
 set("Brian","Kara",2);
 function shared(a,b){return a===b?diag[a]:(pair[a+"|"+b]||0);}
 
